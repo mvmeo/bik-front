@@ -1,10 +1,12 @@
 import { useEvent } from "../context/EventContext";
 import { useEffect } from "react";
 import Event from "../components/Event";
+import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const Events = () => {
   const { getEvents, events } = useEvent();
+  const { user } = useAuth();
 
   useEffect(() => {
     getEvents();
@@ -45,6 +47,7 @@ const Events = () => {
             titulo={event.titulo}
             descripcion={event.descripcion}
             estado={event.estado}
+            isAdmin={user.admin}
           />
         ))}
       </div>
